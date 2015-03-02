@@ -6,7 +6,14 @@ events to a crossbar.io [HTTP Pusher Service](http://crossbar.io/docs/HTTP-Pushe
 
 ***-- NOT PRODUCTION READY --***
 
-[to be written]
+[![Latest Stable Version](https://poser.pugx.org/bushbaby/slmqueue-crossbarpusherstrategy/v/stable.svg)](https://packagist.org/packages/bushbaby/slmqueue-crossbarpusherstrategy)
+[![Total Downloads](https://poser.pugx.org/bushbaby/slmqueue-crossbarpusherstrategy/downloads.svg)](https://packagist.org/packages/bushbaby/slmqueue-crossbarpusherstrategy)
+[![Latest Unstable Version](https://poser.pugx.org/bushbaby/slmqueue-crossbarpusherstrategy/v/unstable.svg)](https://packagist.org/packages/bushbaby/slmqueue-crossbarpusherstrategy)
+[![License](https://poser.pugx.org/bushbaby/slmqueue-crossbarpusherstrategy/license.svg)](https://packagist.org/packages/bushbaby/slmqueue-crossbarpusherstrategy)
+
+[![Build Status](https://travis-ci.org/bushbaby/BsbCrossbarPusherStrategy.svg?branch=master)](https://travis-ci.org/bushbaby/BsbCrossbarPusherStrategy)
+[![Code Coverage](https://scrutinizer-ci.com/g/bushbaby/BsbCrossbarPusherStrategy/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/bushbaby/BsbCrossbarPusherStrategy/?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/bushbaby/BsbCrossbarPusherStrategy/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/bushbaby/BsbCrossbarPusherStrategy/?branch=master)
 
 - - - - 
 
