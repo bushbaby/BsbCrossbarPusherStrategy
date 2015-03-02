@@ -1,0 +1,54 @@
+{
+  "name": "bushbaby/slmqueue-crossbarpusherstrategy",
+  "description": "BsbCrossbarPusherStrategy is a strategy for the SlmQueue ZF2 module that provides the ability to publish worker events to a Crossbar.io 'pusher' endpoint",
+  "type": "library",
+  "keywords": [
+    "zf2",
+    "slm-queue",
+    "module",
+    "strategy",
+    "crossbar.io",
+    "wamp"
+  ],
+  "homepage": "https://github.com/bushbaby/BsbCrossbarPusherStrategy",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Bas Kamer",
+      "homepage": "http://bushbaby.nl"
+    }
+  ],
+  "require": {
+    "php": ">=5.4",
+    "slm/queue": "~0.4",
+    "zendframework/zend-eventmanager": "~2.0",
+    "zendframework/zend-filter": "~2.0",
+    "zendframework/zend-http": "~2.0",
+    "zendframework/zend-json": "~2.0",
+    "zendframework/zend-modulemanager": "~2.0",
+    "zendframework/zend-url": "~2.0"
+  },
+  "require-dev": {
+    "squizlabs/php_codesniffer": "~2.0",
+    "zendframework/zendframework": "~2.0",
+    "phpunit/phpunit": "~4.1"
+  },
+  "suggests" : {
+      "guzzle/http" : "If installed we will attempt to use the included cacert.pem file if you want to push over TLS"
+  },
+  "autoload": {
+    "psr-4": {
+      "BsbCrossbarPusherStrategy\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "BsbCrossbarPusherStrategyTest\\": "test/src/"
+    }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0.x-dev"
+    }
+  }
+}

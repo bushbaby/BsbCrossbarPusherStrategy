@@ -1,0 +1,10 @@
+<?php
+
+return [
+    'modules' => [
+        'SlmQueue',
+        'BsbCrossbarPusherStrategy',
+    ],
+    'module_listener_options' => [
+    ],
+];
