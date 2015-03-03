@@ -1,6 +1,6 @@
 <?php
 
-namespace BsbCrossbarPusherStrategyTest\Factory;
+namespace BsbCrossbarPusherStrategyTest\Strategy;
 
 use BsbCrossbarPusherStrategy\Strategy\CrossbarPusherStrategy;
 use PHPUnit_Framework_TestCase as TestCase;
@@ -40,25 +40,31 @@ class CrossbarPusherStrategyTest extends TestCase
     {
         $this->assertFalse($this->listener->isVerbose());
     }
+
     public function testDefaultKey()
     {
         $this->assertNull($this->listener->getKey());
     }
+
     public function testDefaultSecret()
     {
         $this->assertNull($this->listener->getSecret());
     }
+
     public function testDefaultEndpoint()
     {
         $this->assertNull($this->listener->getEndpoint());
     }
 
-//    public function testMaxRunsSetter()
-//    {
-//        $this->listener->setMaxRuns(2);
-//
-//        $this->assertTrue($this->listener->getMaxRuns() == 2);
-//    }
+    public function testDefaultTopic()
+    {
+        $this->assertEquals('slm.queue.worker.event', $this->listener->getTopic());
+    }
+
+    public function testDefaultAdapterOptions()
+    {
+        $this->assertNull($this->listener->getAdapterOptions());
+    }
 
     public function testListensToCorrectEvents()
     {

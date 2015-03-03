@@ -26,6 +26,7 @@
     "zendframework/zend-http": "~2.0",
     "zendframework/zend-json": "~2.0",
     "zendframework/zend-modulemanager": "~2.0",
+    "zendframework/zend-stdlib": "~2.0",
     "zendframework/zend-uri": "~2.0"
   },
   "require-dev": {
@@ -34,7 +35,7 @@
     "phpunit/phpunit": "~4.1"
   },
   "suggests" : {
-      "guzzle/http" : "If installed we will attempt to use the included cacert.pem file if you want to push over TLS"
+      "guzzle/http" : "Guzzle includes a cacert.pem file you might want to use for TLS connections"
   },
   "autoload": {
     "psr-4": {

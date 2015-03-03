@@ -1,12 +1,16 @@
 <?php
 
 return [
-    'slm_queue' => array(
-        'strategy_manager' => array(
-            'factories' => array(
+    'bsb_crossbarpusherstrategy' => [
+        'topic'           => 'slm.queue.worker.event',
+        'verbose'         => false,
+    ],
+    'slm_queue'                  => [
+        'strategy_manager' => [
+            'factories' => [
                 'BsbCrossbarPusherStrategy\Strategy\CrossbarPusherStrategy'
                 => 'BsbCrossbarPusherStrategy\Strategy\Factory\CrossbarPusherStrategyFactory',
-            ),
-        ),
-    )
+            ],
+        ],
+    ]
 ];

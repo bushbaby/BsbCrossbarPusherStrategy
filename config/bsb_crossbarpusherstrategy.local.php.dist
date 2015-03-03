@@ -1,0 +1,41 @@
+<?php
+
+return [
+    'bsb_crossbarpusherstrategy' => [
+        /**
+         * Whether or not to spit out every message to the log
+         */
+        // 'verbose'         => true,
+
+        /**
+         * WAMP topic
+         */
+        // 'topic'           => 'slm.queue.worker.event',
+
+        /**
+         * Crossbar pusher app key
+         */
+        // 'key'          => 'key',
+
+        /**
+         * Crossbar pusher app secret
+         */
+        // 'secret'          => 'secret',
+
+        /**
+         * Crossbar pusher endpoint
+         */
+        // 'endpoint'        => 'endpoint',
+
+        /**
+         * Http Client Adapter and options
+         */
+//        'adapter_options' => [
+//            'adapter'       => 'Zend\Http\Client\Adapter\Socket',
+//            'ssltransport'  => 'tls',
+//            'timeout'       => 2,
+//            'sslcafile'     => 'vendor/guzzle/http/Guzzle/Http/Resources/cacert.pem',
+//            'sslverifypeer' => true
+//        ]
+    ],
+];

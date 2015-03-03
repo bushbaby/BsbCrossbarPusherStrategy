@@ -49,6 +49,10 @@ example: enabled the BsbCrossbarPusherStrategy for the queue called default with
 ),
 ```
 
+You can configure CrossbarPusherStrategy in every individual worker or queue in this manner. However it might be more 
+convenient to configure this globally and only override specific options. To do this copy the 
+`config/bsb_crossbarpusherstrategy.local.php.dist` to the application autoload directory and modify accordingly.
+
 ### CrossbarPusherStrategy options
 
 [to be written]

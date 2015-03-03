@@ -5,6 +5,7 @@ namespace BsbCrossbarPusherStrategy\Strategy\Factory;
 use BsbCrossbarPusherStrategy\Strategy\CrossbarPusherStrategy;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\Stdlib\ArrayUtils;
 
 /**
  * CrossbarPusherStrategyFactory
@@ -26,6 +27,11 @@ class CrossbarPusherStrategyFactory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        return new CrossbarPusherStrategy($this->options);
+        $serviceLocator = $serviceLocator->getServiceLocator();
+        $config         = $serviceLocator->get('config');
+        $config         = isset($config['bsb_crossbarpusherstrategy']) ? $config['bsb_crossbarpusherstrategy'] : [];
+        $options        = ArrayUtils::merge($config, $this->options);
+
+        return new CrossbarPusherStrategy($options);
     }
 }

@@ -52,13 +52,7 @@ class CrossbarPusherStrategy extends AbstractStrategy
     /**
      * @var array defines the adapter used for transport and its options
      */
-    private $adapterOptions = [
-        'adapter'       => 'Zend\Http\Client\Adapter\Socket',
-        'ssltransport'  => 'tls',
-        'timeout'       => 1,
-        'sslcafile'     => 'vendor/guzzle/http/Guzzle/Http/Resources/cacert.pem',
-        'sslverifypeer' => true
-    ];
+    private $adapterOptions = null;
 
     /**
      * @var bool Whether or not to spit out every message to the log
@@ -113,7 +107,7 @@ class CrossbarPusherStrategy extends AbstractStrategy
      */
     public function setTopic($topic)
     {
-        $this->topic = $topic;
+        $this->topic = (string) $topic;
     }
 
     /**
@@ -129,7 +123,7 @@ class CrossbarPusherStrategy extends AbstractStrategy
      */
     public function setKey($key)
     {
-        $this->key = $key;
+        $this->key = (string) $key;
     }
 
     /**
@@ -145,7 +139,7 @@ class CrossbarPusherStrategy extends AbstractStrategy
      */
     public function setSecret($secret)
     {
-        $this->secret = $secret;
+        $this->secret = (string) $secret;
     }
 
     /**
@@ -161,7 +155,7 @@ class CrossbarPusherStrategy extends AbstractStrategy
      */
     public function setEndpoint($endpoint)
     {
-        $this->endpoint = $endpoint;
+        $this->endpoint = (string) $endpoint;
     }
 
     /**
@@ -177,7 +171,7 @@ class CrossbarPusherStrategy extends AbstractStrategy
      */
     public function setVerbose($verbose)
     {
-        $this->verbose = $verbose;
+        $this->verbose = (bool) $verbose;
     }
 
     /**
@@ -186,6 +180,22 @@ class CrossbarPusherStrategy extends AbstractStrategy
     public function isVerbose()
     {
         return $this->verbose;
+    }
+
+    /**
+     * @return array
+     */
+    public function getAdapterOptions()
+    {
+        return $this->adapterOptions;
+    }
+
+    /**
+     * @param array $adapterOptions
+     */
+    public function setAdapterOptions(array $adapterOptions)
+    {
+        $this->adapterOptions = $adapterOptions;
     }
 
     /**
@@ -328,8 +338,8 @@ class CrossbarPusherStrategy extends AbstractStrategy
         $payloadJob = null;
 
         if ($job = $event->getJob()) {
-            $payloadJob = [];
-            $payloadJob['id']     = $job->getId();
+            $payloadJob            = [];
+            $payloadJob['id']      = $job->getId();
             $payloadJob['content'] = $job->getContent();
             if ($event->getResult() !== null) {
                 $payloadJob['result'] = $event->getResult();
