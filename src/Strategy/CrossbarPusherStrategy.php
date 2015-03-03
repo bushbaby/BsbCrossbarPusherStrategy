@@ -19,11 +19,6 @@ class CrossbarPusherStrategy extends AbstractStrategy
     private $client;
 
     /**
-     * @var int
-     */
-    private $seq = 0;
-
-    /**
      * @var string WAMP topic
      */
     private $topic = 'slm.queue.worker.event';
@@ -340,7 +335,8 @@ class CrossbarPusherStrategy extends AbstractStrategy
      */
     private function getQueryParameters($payload)
     {
-        $this->seq++;
+        static $seq = 0;
+        $seq++;
 
         $time = microtime(true);
         $time = $time - floor($time);
@@ -349,14 +345,14 @@ class CrossbarPusherStrategy extends AbstractStrategy
 
         $params = [
             'timestamp' => (new \DateTime('now', new \DateTimeZone('utc')))->format('Y-m-d\TH:i:s.' . $time . '\Z'),
-            'seq'       => $this->seq,
+            'seq'       => $seq,
         ];
 
         if ($this->key && $this->secret) {
             # HMAC[SHA256]_{secret} (key | timestamp | seq | nonce | body) => signature
             $params['key']       = $this->key;
             $params['nonce']     = rand(0, pow(2, 53));
-            $params['signature'] = $this->key . $params['timestamp'] . $this->seq . $params['nonce'] . $payload;
+            $params['signature'] = $this->key . $params['timestamp'] . $seq . $params['nonce'] . $payload;
             $params['signature'] = hash_hmac("sha256", $params['signature'], $this->secret, true);
             // base64 url save encoding
             $params['signature'] = strtr(base64_encode($params['signature']), '+/', '-_');
