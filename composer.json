@@ -22,7 +22,6 @@
     "php": ">=5.4",
     "slm/queue": "~0.4",
     "zendframework/zend-eventmanager": "~2.0",
-    "zendframework/zend-filter": "~2.0",
     "zendframework/zend-http": "~2.0",
     "zendframework/zend-json": "~2.0",
     "zendframework/zend-modulemanager": "~2.0",

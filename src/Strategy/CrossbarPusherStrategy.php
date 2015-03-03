@@ -5,7 +5,6 @@ namespace BsbCrossbarPusherStrategy\Strategy;
 use SlmQueue\Strategy\AbstractStrategy;
 use SlmQueue\Worker\WorkerEvent;
 use Zend\EventManager\EventManagerInterface;
-use Zend\Filter\FilterChain;
 use Zend\Http\Client;
 use Zend\Http\Exception\ExceptionInterface;
 use Zend\Http\Request;
@@ -45,11 +44,6 @@ class CrossbarPusherStrategy extends AbstractStrategy
     private $endpoint;
 
     /**
-     * @var FilterChain a chain of filters to convert 'onMethodName' function names to 'method-name' event names
-     */
-    private $filter;
-
-    /**
      * @var array defines the adapter used for transport and its options
      */
     private $adapterOptions = null;
@@ -58,25 +52,6 @@ class CrossbarPusherStrategy extends AbstractStrategy
      * @var bool Whether or not to spit out every message to the log
      */
     private $verbose = false;
-
-    /**
-     * @param array $options
-     */
-    public function __construct(array $options = [])
-    {
-        parent::__construct($options);
-
-        $this->filter = new FilterChain();
-        $this->filter
-            ->attachByName('callback', [
-                'callback' => function ($value) {
-                    return substr($value, 2);
-                }
-            ])
-            ->attachByName('wordcamelcasetodash')
-            ->attachByName('worddashtoseparator', ['separator' => '.'])
-            ->attachByName('stringtolower');
-    }
 
     /**
      * @return Client
@@ -204,7 +179,7 @@ class CrossbarPusherStrategy extends AbstractStrategy
      */
     public function onJobStart(WorkerEvent $event)
     {
-        $name    = $this->filter->filter(__FUNCTION__);
+        $name    = 'job.start';
         $payload = $this->buildPayload($name, $event);
         $params  = $this->getQueryParameters($payload);
 
@@ -219,7 +194,7 @@ class CrossbarPusherStrategy extends AbstractStrategy
      */
     public function onJobFinish(WorkerEvent $event)
     {
-        $name    = $this->filter->filter(__FUNCTION__);
+        $name    = 'job.finish';
         $payload = $this->buildPayload($name, $event);
         $params  = $this->getQueryParameters($payload);
 
@@ -234,7 +209,7 @@ class CrossbarPusherStrategy extends AbstractStrategy
      */
     public function onWorkerStart(WorkerEvent $event)
     {
-        $name    = $this->filter->filter(__FUNCTION__);
+        $name    = 'worker.start';
         $payload = $this->buildPayload($name, $event);
         $params  = $this->getQueryParameters($payload);
 
@@ -249,7 +224,7 @@ class CrossbarPusherStrategy extends AbstractStrategy
      */
     public function onWorkerFinish(WorkerEvent $event)
     {
-        $name    = $this->filter->filter(__FUNCTION__);
+        $name    = 'worker.finish';
         $payload = $this->buildPayload($name, $event);
         $params  = $this->getQueryParameters($payload);
 
@@ -264,7 +239,7 @@ class CrossbarPusherStrategy extends AbstractStrategy
      */
     public function onWorkerIdle(WorkerEvent $event)
     {
-        $name    = $this->filter->filter(__FUNCTION__);
+        $name    = 'worker.idle';
         $payload = $this->buildPayload($name, $event);
         $params  = $this->getQueryParameters($payload);
 
